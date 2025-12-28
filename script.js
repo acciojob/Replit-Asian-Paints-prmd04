@@ -1,30 +1,22 @@
-//your JS code here. If required.
-const changeButton = document.getElementById("change_button");
-    const resetButton = document.getElementById("Reset");
+const changeBtn = document.getElementById("change_button");
+  const resetBtn = document.getElementById("reset_button");
 
-    changeButton.addEventListener("click", () => {
-      const blockId = document.getElementById("block_id").value;
-      const color = document.getElementById("colour_id").value;
-
-      // Reset all blocks to transparent
-      const allBlocks = document.querySelectorAll(".grid-item");
-      allBlocks.forEach(block => {
-        block.style.backgroundColor = "transparent";
-      });
-
-      // Change selected block color
-      const selectedBlock = document.getElementById(blockId);
-      if (selectedBlock) {
-        selectedBlock.style.backgroundColor = color;
-      }
+  function resetGrid() {
+    document.querySelectorAll(".grid-item").forEach(item => {
+      item.style.backgroundColor = "rgba(0, 0, 0, 0)";
     });
+  }
 
-    resetButton.addEventListener("click", () => {
-      const allBlocks = document.querySelectorAll(".grid-item");
-      allBlocks.forEach(block => {
-        block.style.backgroundColor = "transparent";
-      });
+  changeBtn.addEventListener("click", () => {
+    const blockId = document.getElementById("block_id").value;
+    const color = document.getElementById("colour_id").value;
 
-      document.getElementById("block_id").value = "";
-      document.getElementById("colour_id").value = "";
-    });
+    resetGrid();
+
+    const block = document.getElementById(blockId);
+    if (block) {
+      block.style.backgroundColor = color;
+    }
+  });
+
+  resetBtn.addEventListener("click", resetGrid);
